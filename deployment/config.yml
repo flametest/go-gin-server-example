@@ -1,4 +1,4 @@
 projectName: go-gin-server-example
 env: dev
-httpHost: 8080
-grpcHost: 9090
+httpHost: :8080
+grpcHost: :9090

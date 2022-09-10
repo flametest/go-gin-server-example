@@ -1,4 +1,4 @@
-package internal
+package controller
 
 import "github.com/gin-gonic/gin"
 
@@ -9,9 +9,13 @@ func NewRouter() *gin.Engine {
 
 	v1 := router.Group("v1")
 	{
-		userGroup := v1.Group("users")
+		userAPI := v1.Group("users")
 		{
-			userGroup.GET("/:user_id")
+			userAPI.GET("/:user_id")
+		}
+		groupAPI := v1.Group("groups")
+		{
+			groupAPI.GET("/:group_id")
 		}
 	}
 	return router
