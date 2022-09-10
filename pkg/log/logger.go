@@ -3,15 +3,17 @@ package log
 import (
 	"github.com/rs/zerolog"
 	"os"
+	"time"
 )
 
 var logger zerolog.Logger
 
 func Initialize(app string, logLevel zerolog.Level) {
+	output := zerolog.ConsoleWriter{Out: os.Stdout, TimeFormat: time.RFC3339}
 	logger = zerolog.
-		New(os.Stderr).
+		New(output).
 		Level(logLevel).
-		With().Timestamp().
+		With().Timestamp().Caller().
 		Logger().
 		Hook(appHook{App: app})
 }
