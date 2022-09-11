@@ -8,7 +8,7 @@ func NewRouter() *gin.Engine {
 	router.Use(gin.Recovery())
 
 	v1 := router.Group("v1")
-	addUserAPI(v1)
-	addGroupAPI(v1)
+	addUserController(v1)
+	addGroupController(v1)
 	return router
 }
