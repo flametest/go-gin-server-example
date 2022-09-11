@@ -23,14 +23,15 @@ func main() {
 	)
 	defer stop()
 
+	// init log module first
 	log.Initialize("go-gin-server-example", zerolog.DebugLevel)
 	log.Debug().Msg("log initialization complete.")
-
+	// init config
 	config.InitConfig()
 	log.Debug().Msg("config initialization complete.")
 
 	router := controller.NewRouter()
-	srv := server.NewServer(router)
+	srv := server.NewHttpServer(router)
 	go func() {
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal().Msgf("listen: %s\n", err)

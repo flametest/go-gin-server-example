@@ -7,18 +7,18 @@ import (
 	"time"
 )
 
-type GinServer struct {
+type GinHttpServer struct {
 	http.Server
 }
 
-func NewServer(router *gin.Engine) *GinServer {
+func NewHttpServer(router *gin.Engine) *GinHttpServer {
 	server := http.Server{
 		Addr:         config.Cfg.HttpHost,
 		Handler:      router,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
-	return &GinServer{
+	return &GinHttpServer{
 		server,
 	}
 }
