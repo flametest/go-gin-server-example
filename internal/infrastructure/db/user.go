@@ -28,6 +28,10 @@ type userDaoImpl struct {
 	*gorm.DB
 }
 
+func newUserDaoImpl(DB *gorm.DB) *userDaoImpl {
+	return &userDaoImpl{DB: DB}
+}
+
 func (u *userDaoImpl) SaveUser(ctx context.Context, do *UserDO) (uint64, error) {
 	if err := u.WithContext(ctx).Save(do).Error; err != nil {
 		return 0, err

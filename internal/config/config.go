@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"github.com/flametest/go-gin-server-example/pkg/mysql"
 	"github.com/spf13/viper"
 	"log"
 	"path"
@@ -12,10 +13,11 @@ var cfgPath = flag.String("config-path", "/opt/conf/", "configuration file path"
 var cfgName = flag.String("config-name", "config", "configuration file name")
 
 type Config struct {
-	ProjectName string `json:"projectName"`
-	Env         string `json:"env"`
-	HttpHost    string `json:"httpHost"`
-	GrpcHost    string `json:"grpcHost"`
+	ProjectName string        `json:"projectName" yaml:"projectName"`
+	Env         string        `json:"env" yaml:"env"`
+	HttpHost    string        `json:"httpHost" yaml:"httpHost"`
+	GrpcHost    string        `json:"grpcHost" yaml:"grpcHost"`
+	Mysql       *mysql.Config `json:"mysql" yaml:"mysql"`
 }
 
 var Cfg = &Config{}

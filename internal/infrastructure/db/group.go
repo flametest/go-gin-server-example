@@ -27,6 +27,10 @@ type groupDaoImpl struct {
 	*gorm.DB
 }
 
+func newGroupDaoImpl(DB *gorm.DB) *groupDaoImpl {
+	return &groupDaoImpl{DB: DB}
+}
+
 func (g *groupDaoImpl) SaveGroup(ctx context.Context, do *GroupDO) (uint64, error) {
 	if err := g.WithContext(ctx).Save(do).Error; err != nil {
 		return 0, err
